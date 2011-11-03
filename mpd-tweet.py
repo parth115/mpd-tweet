@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 App_Name = "MPD-Tweet"
 Consumer_key = "n9gj3P5Ug3bhnNNF4p3ow"
 Consumer_secret = "7FIAaTZQAFcNboWXVUUlTffxzbDVEY7iwXw67fyd7Q"
@@ -40,7 +42,10 @@ class Tweet:
         
     def tweet_now_playing(self, currentSong, api):
         currentSong['album'] =""
-        status = ("Listening to %s by %s #nowplaying" ) % (currentSong['title'], currentSong['artist'])
+        try:
+            status = ("Listening to %s by %s #nowplaying" ) % (currentSong['title'], currentSong['artist'])
+        except KeyError:
+            status = ("Listening to %s #nowplaying" ) % (currentSong['title'] )
         print status 
         api.UpdateStatus(status)
         
