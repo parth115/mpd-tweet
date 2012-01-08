@@ -41,9 +41,8 @@ class Tweet:
             print "Unable to connect to MPD on %s on port %s" % (MPDHost, MPDPort)
         
     def tweet_now_playing(self, currentSong, api):
-        currentSong['album'] =""
         try:
-            status = ("Listening to %s by %s #nowplaying" ) % (currentSong['title'], currentSong['artist'])
+            status = ("Listening to \"%s\" by \"%s\" from the album \"%s\" #nowplaying" ) % (currentSong['title'], currentSong['artist'], currentSong['album'])
         except KeyError:
             status = ("Listening to %s #nowplaying" ) % (currentSong['title'] )
         print status 
